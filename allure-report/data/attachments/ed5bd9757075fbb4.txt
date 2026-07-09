@@ -1,5 +1,0 @@
-
-➡️ Открыта главная страница: https://qa-scooter.praktikum-services.ru/
-🔽 Кликаем нижнюю кнопку 'Заказать'
-📍 Текущий URL после клика: https://qa-scooter.praktikum-services.ru/order
-✅ URL содержит /order

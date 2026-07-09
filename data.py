@@ -1,9 +1,9 @@
-# URL сервиса (замени на актуальный)
-BASE_URL = "https://qa-scooter.praktikum-services.ru/"
+class Urls:
+    BASE_URL = "https://qa-scooter.praktikum-services.ru/"
+    DZEN_URL = "https://dzen.ru/"
 
-# Данные для тестов заказа (два набора)
-ORDER_DATA = [
-    {
+class OrderData:
+    DATA_SET_1 = {
         "name": "Иван",
         "surname": "Петров",
         "address": "ул. Ленина, 10",
@@ -13,8 +13,8 @@ ORDER_DATA = [
         "rental_period": "сутки",
         "color": "чёрный",
         "comment": "Позвоните заранее"
-    },
-    {
+    }
+    DATA_SET_2 = {
         "name": "Мария",
         "surname": "Сидорова",
         "address": "пр. Мира, 5",
@@ -25,7 +25,7 @@ ORDER_DATA = [
         "color": "серая безысходность",
         "comment": "Без комментариев"
     }
-]
+    ALL_DATA = [DATA_SET_1, DATA_SET_2]
 
-# URL для проверки логотипа Яндекса
-DZEN_URL = "https://dzen.ru/"
+class Texts:
+    SUCCESS_MESSAGE_PART = "Заказ оформлен"
