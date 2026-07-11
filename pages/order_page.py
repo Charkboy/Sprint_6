@@ -28,10 +28,8 @@ class OrderPage(BasePage):
 
     def fill_metro(self, metro_station):
         self.click_element(OrderPageLocators.METRO_FIELD, timeout=10)
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_all_elements_located(OrderPageLocators.METRO_DROPDOWN)
-        )
-        stations = self.driver.find_elements(*OrderPageLocators.METRO_DROPDOWN)
+        self.wait_for_element_visible(OrderPageLocators.METRO_DROPDOWN, timeout=10)
+        stations = self.find_elements(OrderPageLocators.METRO_DROPDOWN)
         for station in stations:
             if station.text.strip() == metro_station:
                 station.click()
@@ -52,10 +50,8 @@ class OrderPage(BasePage):
     def select_rental_period(self, period):
         self.close_cookie_banner()
         self.click_element(OrderPageLocators.RENTAL_PERIOD, timeout=10)
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_any_elements_located(OrderPageLocators.RENTAL_OPTIONS)
-        )
-        options = self.driver.find_elements(*OrderPageLocators.RENTAL_OPTIONS)
+        self.wait_for_element_visible(OrderPageLocators.RENTAL_OPTIONS, timeout=10)
+        options = self.find_elements(OrderPageLocators.RENTAL_OPTIONS)
         for opt in options:
             if opt.text.strip().lower() == period.lower():
                 opt.click()

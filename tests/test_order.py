@@ -1,12 +1,18 @@
 import pytest
+import allure
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 from data import Urls, OrderData, Texts
 
+@allure.feature('Заказ самоката')
 class TestOrder:
-    @pytest.mark.parametrize("order_data", OrderData.ALL_DATA)
-    @pytest.mark.parametrize("button_locator", ["top", "bottom"])
+
+    @allure.story('Позитивный сценарий заказа')
+    @pytest.mark.parametrize("order_data", OrderData.ALL_DATA, ids=["data1", "data2"])
+    @pytest.mark.parametrize("button_locator", ["top", "bottom"], ids=["top_button", "bottom_button"])
     def test_order_scooter(self, driver, order_data, button_locator):
+        allure.dynamic.title(f"Заказ с {button_locator} кнопкой и данными: {order_data['name']}")
+
         driver.get(Urls.BASE_URL)
         main_page = MainPage(driver)
         main_page.close_cookie_banner()

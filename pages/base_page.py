@@ -12,6 +12,12 @@ class BasePage:
             EC.visibility_of_element_located(locator)
         )
 
+    def find_elements(self, locator, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_all_elements_located(locator)
+        )
+        return self.driver.find_elements(*locator)
+
     def click_element(self, locator, timeout=10):
         element = WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(locator)
@@ -39,10 +45,23 @@ class BasePage:
         )
         return element.text
 
+    def get_current_url(self):
+        return self.driver.current_url
+
+    def switch_to_new_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+
+    def close_current_window(self):
+        self.driver.close()
+        self.driver.switch_to.window(self.driver.window_handles[0])
+
     def wait_for_url_contains(self, part, timeout=10):
         WebDriverWait(self.driver, timeout).until(EC.url_contains(part))
 
-    def wait_for_number_of_windows(self, count, timeout=10):
+    def wait_for_url_to_be(self, url, timeout=10):
+        WebDriverWait(self.driver, timeout).until(EC.url_to_be(url))
+
+    def wait_for_window_count(self, count, timeout=10):
         WebDriverWait(self.driver, timeout).until(EC.number_of_windows_to_be(count))
 
     def wait_for_element_present(self, locator, timeout=10):
@@ -58,6 +77,11 @@ class BasePage:
     def wait_for_element_clickable(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(locator)
+        )
+
+    def wait_for_page_ready(self, timeout=60):
+        WebDriverWait(self.driver, timeout).until(
+            lambda driver: driver.execute_script("return document.readyState") == "complete"
         )
 
     def close_cookie_banner(self):
