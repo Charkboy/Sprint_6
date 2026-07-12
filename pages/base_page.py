@@ -7,6 +7,22 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
+    def open(self, url):
+        self.driver.get(url)
+
+    def get_current_url(self):
+        return self.driver.current_url
+
+    def get_current_window_handle(self):
+        return self.driver.current_window_handle
+
+    def switch_to_new_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+
+    def close_current_window(self):
+        self.driver.close()
+        self.driver.switch_to.window(self.driver.window_handles[0])
+
     def find_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)

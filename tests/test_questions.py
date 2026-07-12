@@ -9,8 +9,8 @@ class TestQuestions:
     @allure.story('Проверка ответов')
     @pytest.mark.parametrize("question_index", range(8))
     def test_question_answers(self, driver, question_index):
-        driver.get(Urls.BASE_URL)
         main_page = MainPage(driver)
+        main_page.open(Urls.BASE_URL)
         main_page.close_cookie_banner()
         main_page.click_question(question_index)
         answer_text = main_page.get_answer_text(question_index)

@@ -1,28 +1,9 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-venv/
-env/
-ENV/
-
-# IDE
-.vscode/
-.idea/
-*.iml
-
-# Testing
+*.pyc
 .pytest_cache/
-.allure/
 allure-results/
 allure-report/
-*.log
-
-# Screenshots
 *.png
-*.jpg
-
-# Git
-*.orig
+*.log
+.vscode/
+.idea/
