@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 class BasePage:
     def __init__(self, driver):
@@ -106,3 +107,9 @@ class BasePage:
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(cookie_button)).click()
         except TimeoutException:
             pass
+
+    def press_escape(self, locator, timeout=10):
+        element = WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_element_located(locator)
+        )
+        element.send_keys(Keys.ESCAPE)

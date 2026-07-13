@@ -45,7 +45,7 @@ class OrderPage(BasePage):
 
     def fill_date(self, date):
         self.send_keys_to_element(OrderPageLocators.DATE_FIELD, date, timeout=10)
-        self.driver.find_element(*OrderPageLocators.DATE_FIELD).send_keys(Keys.ESCAPE)
+        self.press_escape(OrderPageLocators.DATE_FIELD)
 
     def select_rental_period(self, period):
         self.close_cookie_banner()
